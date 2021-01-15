@@ -14,9 +14,11 @@ export default function Product(props){
     const [comment, setComment] = useState('');
     const submitHandler = (e) => {
         e.preventDefault();
+        
       };
      const handleAddToCart=()=>{
-         props.history.push("/cart/"+props.match.params.id+"?qty="+qty);
+        product.value=qty;
+         props.history.push("/cart");
      }
      return (
         <div>
@@ -77,7 +79,7 @@ export default function Product(props){
                       {/* {product.countInStock > 0 && ( */}
              
                         <button
-                          onClick={handleAddToCart}
+                          onClick={()=>handleAddToCart(product.addcart)}
                           className="button primary"
                         >
                           Add to Cart

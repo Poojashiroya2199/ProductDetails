@@ -1,34 +1,15 @@
 import React, {useState} from "react";
 import {Link} from "react-router-dom";
-// import { useSelector ,useDispatch} from "react-redux";
-// import  {listProducts} from "./../actions/Productaction";
 import Ratings from './Rating';
 
 export default function Products(props){
     const {products}=props;
     const [newproducts,setproducts]=useState(products);
-    // const [searchKeyword, setSearchKeyword] = useState('');
-    // const [sortOrder, setSortOrder] = useState('');
-    // const category = props.match.params.id ? props.match.params.id : '';
-    
-    // const productList =useSelector(state=>state.productList);
-    // const {products,loading,error}=productList;
-    // const dispatch=useDispatch();
-    // useEffect(()=>{
-    //     dispatch(listProducts(category));
-    //     return ()=>{ }
-    // }, 
-    // //  eslint-disable-next-line 
-    // [category]);
 
     const submitHandler = (e) => {
         e.preventDefault();
-        // dispatch(listProducts(category, searchKeyword, sortOrder));
+     
       };
-      // const sortHandler = (e) => {
-      //   // setSortOrder(e.target.value);
-      //   // dispatch(listProducts(category, searchKeyword, sortOrder));
-      // };
       const  setSearchKeyword=(e)=>{
         const newlist=products.filter(x=>x.title.includes(e));
         setproducts(newlist);
@@ -36,8 +17,6 @@ export default function Products(props){
 
     return (
         <>
-          {/* {category && <h2>{category}</h2>} */}
-
 <ul className="filter">
   <li>
     <form 

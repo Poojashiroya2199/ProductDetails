@@ -56,7 +56,7 @@ export default function Home(props){
               <Switch>
                 <Route path="/signin" render={(props)=><Signin email={email} setEmail={setEmail} password={password} setPassword={setPassword} error={error} setError={setError} {...props}/>}/>
                 <Route path="/register" component={Register}/>
-                <Route path="/cart" component={Cart}/>
+                <Route path="/cart" render={()=><Cart products={products} {...props}/>}/>
               <Route path="/product/:id" render={(props)=><Product  products={products} {...props}/>}/>
               <Route path="/"  exact render={()=><Products  products={products}/>}/> 
               <Redirect to="/"/>

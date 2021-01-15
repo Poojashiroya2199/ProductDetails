@@ -8,10 +8,23 @@ function App(props) {
   useEffect(() => {
     axios.get(url).then(response=>{
        setProducts(response.data);
+       response.data.map((option) => {
+        // New properties to be added
+        const newPropsObj = {
+          value: 0,
+          liked: false,
+          addcart: false
+        };
+      
+        // Assign new properties and return
+        return Object.assign(option, newPropsObj);
+      });
     });
     // console.log(props);
     return () => { };
   }, [products]);
+   
+ 
 
   if(products){
   return (
