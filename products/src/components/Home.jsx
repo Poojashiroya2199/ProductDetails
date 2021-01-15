@@ -4,9 +4,15 @@ import Products from "./Products";
 import Product from "./Product";
 import Signin from "./Signin";
 import Register from "./Register";
+import Cart from "./Cart";
 export default function Home(props){
   // console.log(props);
     const [showsidebar,setsidebar]=useState(false);
+    const [email, setEmail] = useState('');
+    const [password, setPassword] = useState('');
+    const [error,setError] = useState("");
+    // const redirect = props.location.search ? props.location.search.split("=")[1] : '/';
+   
         const openMenu=()=>{
             setsidebar(true);
     }
@@ -26,9 +32,9 @@ export default function Home(props){
           </div>
           <div >
               <Link to="/cart" className="headerlinks"> Cart</Link>
-              {/* { userInfo ? <Link to="/profile" className="link usersigned">{userInfo.name}</Link>: */}
+              { (email!==""|| password!=="")? <Link to="/profile" className="link usersigned">{email}</Link>:
               <Link to="/signin" className="headerlinks ">Sign In</Link>
-              {/* } */}
+               } 
             
           </div>
         </header>
@@ -48,8 +54,9 @@ export default function Home(props){
         <main className="main">
             <div className="content">
               <Switch>
-                <Route path="/signin" component={Signin}/>
+                <Route path="/signin" render={(props)=><Signin email={email} setEmail={setEmail} password={password} setPassword={setPassword} error={error} setError={setError} {...props}/>}/>
                 <Route path="/register" component={Register}/>
+                <Route path="/cart" component={Cart}/>
               <Route path="/product/:id" render={(props)=><Product  products={products} {...props}/>}/>
               <Route path="/"  exact render={()=><Products  products={products}/>}/> 
               <Redirect to="/"/>

@@ -1,32 +1,17 @@
 
 import React, { useEffect, useState } from 'react';
 import { Link } from 'react-router-dom';
-// import { useSelector, useDispatch } from 'react-redux';
-// import { signin } from '../actions/userAction';
-
 function Signin(props) {
-
-  const [email, setEmail] = useState('');
-  const [password, setPassword] = useState('');
-//   const userSignin = useSelector(state => state.userSignin);
-//   const { loading, userInfo, error } = userSignin;
-//   const dispatch = useDispatch();
-  const redirect = props.location.search ? props.location.search.split("=")[1] : '/';
-  useEffect(() => {
-    // if (userInfo) {
-    //   props.history.push(redirect);
-    // }
-    return () => {
-      //
-    };
-  }, 
-     //  eslint-disable-next-line 
-  []);
-
+  const {email,setEmail,password, setPassword,error,setError}=props;
   const submitHandler = (e) => {
     e.preventDefault();
-    // dispatch(signin(email, password));
-
+    if(email==="" || password===""){
+        setError("usename or password required correctly");
+    }
+    else{
+        setError("");
+        props.history.push('/');
+    }
   }
   return <div className="form">
     <form onSubmit={submitHandler} >
@@ -35,8 +20,7 @@ function Signin(props) {
           <h2>Sign-In</h2>
         </li>
         <li>
-          {/* {loading && <div>Loading...</div>}
-          {error && <div>{error}</div>} */}
+          <div>{error}</div>
         </li>
         <li>
           <label htmlFor="email">
@@ -57,7 +41,7 @@ function Signin(props) {
           New to amazona?
         </li>
         <li>
-          <Link to={redirect === "/" ? "register" : "register?redirect=" + redirect} className="button secondary textcenter" >Create your New Look account</Link>
+          <Link to="/register"  className="button secondary textcenter" >Create your New Look account</Link>
         </li>
       </ul>
     </form>
